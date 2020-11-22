@@ -27,7 +27,7 @@
         # security
         'security/formio_security.xml',
         'security/ir_model_access.xml',
-        'security/ir_rule.xml',
+        # 'security/ir_rule.xml',
         # views
         'views/formio_builder_views.xml',
         'views/formio_builder_js_options_views.xml',

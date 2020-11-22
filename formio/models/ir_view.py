@@ -13,10 +13,12 @@ FORMIO_VIEW_TYPES = [
 class IrUIView(models.Model):
     _inherit = 'ir.ui.view'
 
-    type = fields.Selection(selection_add=FORMIO_VIEW_TYPES)
+    type = fields.Selection(selection_add=FORMIO_VIEW_TYPES, ondelete={
+                            'formio_builder': 'cascade', 'formio_form': 'cascade', })
 
 
 class IrActionsActWindowView(models.Model):
     _inherit = 'ir.actions.act_window.view'
 
-    view_mode = fields.Selection(selection_add=FORMIO_VIEW_TYPES)
+    view_mode = fields.Selection(selection_add=FORMIO_VIEW_TYPES, ondelete={
+                                 'formio_builder': 'cascade', 'formio_form': 'cascade', })
