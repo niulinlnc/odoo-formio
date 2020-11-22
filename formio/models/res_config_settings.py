@@ -37,7 +37,7 @@ class ResConfigSettings(models.TransientModel):
         default_asset_css = self.env['formio.default.asset.css'].with_context(context).search([])
         if default_asset_css:
             res.update(
-                formio_default_asset_css_ids=default_asset_css.ids
+                formio_default_asset_css_ids=default_asset_css
             )
         return res
 
