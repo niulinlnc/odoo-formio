@@ -93,7 +93,8 @@ See LICENSE file for full licensing details. -->
                             <group name="settings">
                                 <group name="formio_settings" string="Form.io">
                                     <field name="formio_version_id" attrs="{'readonly': [('state', '!=', 'DRAFT')]}"/>
-                                    <field name="wizard" groups="formio.group_formio_admin" attrs="{'readonly': [('state', '!=', 'DRAFT')]}"/>
+                                    <!-- <field name="wizard" groups="formio.group_formio_admin" attrs="{'readonly': [('state', '!=', 'DRAFT')]}"/> -->
+                                    <field name="form_type" groups="formio.group_formio_admin" attrs="{'readonly': [('state', '!=', 'DRAFT')]}"/>
                                     <field name="view_as_html" groups="formio.group_formio_admin"/>
                                 </group>
                                 <group string="Publish">
@@ -269,10 +270,10 @@ See LICENSE file for full licensing details. -->
                 <filter string="Not Portal" name="not_portal"
                         domain="[('portal', '=', False)]"/>
                 <separator/>
-                <filter string="Wizard" name="wizard"
+                <!-- <filter string="Wizard" name="wizard"
                         domain="[('wizard', '=', True)]"/>
                 <filter string="Not Wizard" name="not_portal"
-                        domain="[('wizard', '=', False)]"/>
+                        domain="[('wizard', '=', False)]"/> -->
                 <group expand="0" string="Group By">
                     <filter string="Name" name="name" domain="[]" context="{'group_by':'name'}"/>
                     <filter string="Assigned User" name="user" domain="[]" context="{'group_by':'user_id'}"/>
