@@ -194,19 +194,20 @@ See LICENSE file for full licensing details. -->
                                 <field name="allow_force_update_state_group_ids" />
                             </group>
                         </page>
-                        <page string="JavaScript Options" name="javascript_options" groups="formio.group_formio_admin">
-                            <div style="background-color: #e9ecef; padding: 0 10px;">
+                        <page string="JS Options" name="javascript_options" groups="formio.group_formio_admin">
+                            <div class="mb-4" style="background-color: #e9ecef; padding: 0 10px;">
                                 <group>
                                     <field
                                         name="formio_js_options_id"
-                                        string="Select Form.io Javascript Options"
+                                        string="Select Form.io JS Options"
                                         attrs="{'readonly': [('state', '!=', 'DRAFT')]}"
                                         style="height: 100%"/>
                                 </group>
                             </div>
                             
-                            <field name="formio_js_options" attrs="{'readonly': [('state', '!=', 'DRAFT')]}"/>
-                            <div class="text-muted">
+                            <field name="formio_js_options" placeholder="{ ... }" attrs="{'readonly': [('state', '!=', 'DRAFT')]}"/>
+                            <div class="text-muted mt-4">
+                                <i class="fa fa-info-circle" title="info"/><strong> Documentation</strong><br/>
                                 For example, Options could contain the Form Builder editForm with some File component settings:<br/>
                                 <a href="https://github.com/formio/formio.js/blob/master/src/components/file/editForm/File.edit.file.js" target="_blank">
                                     https://github.com/formio/formio.js/blob/master/src/components/file/editForm/File.edit.file.js
@@ -230,9 +231,6 @@ See LICENSE file for full licensing details. -->
                         </page>
                         <page string="JSON Schema" name="schema" groups="formio.group_formio_admin">
                             <field name="schema" attrs="{'readonly': [('state', '!=', 'DRAFT')]}"/>
-                        </page>
-                        <page string="Forms" name="forms" groups="formio.group_formio_admin">
-                            <field name="forms"/>
                         </page>
                     </notebook>
                 </sheet>
