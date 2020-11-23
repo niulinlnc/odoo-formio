@@ -142,7 +142,7 @@ msgid ""
 "                                <i class=\"fa fa-info-circle\" title=\"info\"/><strong> Integration / Resource settings</strong> - Enables integration of Form and ERP/Odoo objects.<br/>"
 msgstr ""
 "<br/>\n"
-"                                <i class=\"fa fa-info-circle\" title=\"info\"/><strong> 集成/资源设置</strong> - 启用 Form 和 Odoo 对象的集成。<br/>"
+"                                <i class=\"fa fa-info-circle\" title=\"info\"/><strong> 集成/数据源设置</strong> - 启用 Form 和 ERP/Odoo 的集成。<br/>"
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_form_kanban
@@ -162,12 +162,12 @@ msgstr "<i class=\"fa fa-info-circle\" title=\"info\"/> 网站功能的配置也
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_builder_form
 msgid "<i class=\"fa fa-info-circle\" title=\"info\"/> Configure in Resource tab (if settings are available)"
-msgstr "<i class=\"fa fa-info-circle\" title=\"info\"/> 在“资源”选项卡中配置（如果设置可用）"
+msgstr "<i class=\"fa fa-info-circle\" title=\"info\"/> 在“数据源模型”菜单中配置（如果设置可用）"
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_builder_form
 msgid "<i class=\"fa fa-info-circle\" title=\"info\"/> Configure in related tabs (Portal, Public / Website)"
-msgstr "<i class=\"fa fa-info-circle\" title=\"info\"/> 在相关标签（门户，公共/网站）中进行配置"
+msgstr "<i class=\"fa fa-info-circle\" title=\"info\"/> 在相关菜单（门户，公共/网站）中进行设置"
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_builder_form
@@ -200,7 +200,7 @@ msgid ""
 "<i class=\"fa fa-info-circle\" title=\"info\"/><strong> View as HTML</strong> - This setting (still) doesn't work since version 4.x<br/>\n"
 "                                For more info see Formio.js GitHub issue:"
 msgstr ""
-"<i class=\"fa fa-info-circle\" title=\"info\"/><strong> 以HTML格式查看</strong> - 此设置（仍然）自版本4.x起不起作用<br/>\n"
+"<i class=\"fa fa-info-circle\" title=\"info\"/><strong> HTML格式查看</strong> - 此设置（仍然）自版本4.x起不起作用<br/>\n"
 "                                有关更多信息，请参见来自Formio.js GitHub的问题:"
 
 #. module: formio
@@ -604,7 +604,7 @@ msgstr "默认CSS资源"
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.res_config_settings_view_form
 msgid "Default Form Builder JavaScript Options Template"
-msgstr "默认表单构建器JS选项模板"
+msgstr "默认表单构建器选项JSON模板"
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.res_config_settings_view_form
@@ -728,12 +728,12 @@ msgstr "构建器"
 #: model:ir.actions.act_window,name:formio.action_formio_builder_js_options model_terms:ir.ui.view,arch_db:formio.view_formio_builder_js_options_form
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_builder_js_options_tree
 msgid "Form Builder JS Options"
-msgstr "构建器JS选项"
+msgstr "构建器选项JSON"
 
 #. module: formio
 #: model:ir.ui.menu,name:formio.menu_formio_builder_js_options
 msgid "Form Builder JS options"
-msgstr "构建器JS选项"
+msgstr "构建器选项JSON"
 
 #. module: formio
 #: model:ir.actions.act_window,name:formio.action_formio_builder model:ir.ui.menu,name:formio.menu_formio_builder model_terms:ir.ui.view,arch_db:formio.view_formio_builder_form
@@ -872,7 +872,7 @@ msgstr "Formio构建器JS选项"
 #. module: formio
 #: model:ir.model,name:formio.model_formio_builder_translation
 msgid "Formio Builder Translation"
-msgstr "Formio构建器翻译包"
+msgstr "Formio构建器翻译"
 
 #. module: formio
 #: model:ir.model,name:formio.model_formio_form
@@ -1233,7 +1233,7 @@ msgstr "只有一个名为\"{name}\"的表单构建器可以处于生效状态�
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.res_config_settings_view_form
 msgid "Options Template"
-msgstr "JS选项模板"
+msgstr "选项JSON模板"
 
 #. module: formio
 #: model:ir.model.fields,field_description:formio.field_formio_builder__parent_id
@@ -1480,7 +1480,7 @@ msgstr "请参阅下面的示例... 该选项可以让构建器包含某些文�
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.view_formio_builder_form
 msgid "Select Form.io Javascript Options"
-msgstr "选择构建器的JS选项"
+msgstr "选择构建器的选项JSON"
 
 #. module: formio
 #: model_terms:ir.ui.view,arch_db:formio.res_config_settings_view_form
@@ -1832,7 +1832,7 @@ msgstr "视图类型"
 #. module: formio
 #: model:ir.model.fields,field_description:formio.field_formio_builder__view_as_html
 msgid "View as HTML"
-msgstr "以HTML格式查看"
+msgstr "HTML格式查看"
 
 #. module: formio
 #: model:ir.model.fields,help:formio.field_formio_builder__view_as_html

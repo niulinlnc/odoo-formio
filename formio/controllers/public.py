@@ -154,7 +154,7 @@ class FormioPublicController(http.Controller):
 
         if not request.env.user:
             public_user = request.env.ref('base.public_user').sudo()
-            context['force_company'] = public_user.sudo().company_id.id
+            context['company_id'] = public_user.sudo().company_id.id
 
         form_model = Form.with_context(**context)
         res = form_model.sudo().create(vals)

@@ -107,7 +107,9 @@ class Builder(models.Model):
     show_form_state = fields.Boolean("Show Form State", track_visibility='onchange', help="Show the state in the Form header.", default=True)
     show_form_user_metadata = fields.Boolean(
         "Show User Metadata", track_visibility='onchange', help="Show submission and assigned user metadata in the Form header.", default=True)
-    wizard = fields.Boolean("Wizard", track_visibility='onchange')
+    # wizard = fields.Boolean("Wizard", track_visibility='onchange')
+    form_type = fields.Selection(string='Form Type', selection=[('form', 'Form'), ('wizard', 'Wizard'), ('pdf', 'Pdf')], default='form', required=True)
+
     translations = fields.One2many('formio.builder.translation', 'builder_id', string='Translations')
     languages = fields.One2many('res.lang', compute='_compute_languages', string='Languages')
     allow_force_update_state_group_ids = fields.Many2many(
@@ -208,20 +210,38 @@ class Builder(models.Model):
         if self.formio_js_options_id:
             self.formio_js_options = self.formio_js_options_id.value
 
-    @api.onchange('wizard')
-    def _onchange_wizard(self):
-        if self.wizard:
+    # @api.onchange('wizard')
+    # def _onchange_wizard(self):
+    #     if self.wizard:
+    #         if self.schema:
+    #             schema = self._decode_schema(self.schema)
+    #             schema['display'] = "wizard"
+    #             self.schema = json.dumps(schema)
+    #         else:
+    #             self.schema = '{"display": "wizard"}'
+    #     else:
+    #         if self.schema:
+    #             schema = self._decode_schema(self.schema)
+    #             del schema['display']
+    #             self.schema = json.dumps(schema)
+
+    @api.onchange('form_type')
+    def _onchange_form_type(self):
+        if self.form_type:
             if self.schema:
                 schema = self._decode_schema(self.schema)
-                schema['display'] = "wizard"
-                self.schema = json.dumps(schema)
+                schema['display'] = self.form_type
             else:
-                self.schema = '{"display": "wizard"}'
-        else:
-            if self.schema:
-                schema = self._decode_schema(self.schema)
-                del schema['display']
-                self.schema = json.dumps(schema)
+                schema = {"display": self.form_type}
+            # schema.update({
+            #     "settings": {
+            #         "pdf": {
+            #             "id": "1ec0f8ee-6685-5d98-a847-26f67b67d6f0",
+            #             "src": "https://files.form.io/pdf/5692b91fd1028f01000407e3/file/1ec0f8ee-6685-5d98-a847-26f67b67d6f0"
+            #         }
+            #     },
+            # })
+            self.schema = json.dumps(schema)
 
     @api.depends('formio_res_model_id')
     def _compute_res_model_id(self):

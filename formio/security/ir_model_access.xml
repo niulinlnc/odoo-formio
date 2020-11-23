@@ -364,5 +364,26 @@ See LICENSE file for full copyright and licensing details. -->
             <field name="perm_write" eval="1"/>
             <field name="perm_unlink" eval="1"/>
         </record>
+
+        <!-- # For TransientModel -->
+        <record id="access_formio_version_github_checker_wizard_user" model="ir.model.access">
+            <field name="name">formio.version.github.checker.wizard: User</field>
+            <field name="model_id" ref="formio.model_formio_version_github_checker_wizard"/>
+            <field name="group_id" ref="formio.group_formio_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+        <record id="access_formio_version_github_tag_available_user" model="ir.model.access">
+            <field name="name">formio.version.github.tag.available: User</field>
+            <field name="model_id" ref="formio.model_formio_version_github_tag_available"/>
+            <field name="group_id" ref="formio.group_formio_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
     </data>
 </odoo>
