@@ -2,6 +2,7 @@
 # See LICENSE file for full licensing details.
 
 import requests
+import urllib.request
 
 from odoo import api, fields, models, _
 
