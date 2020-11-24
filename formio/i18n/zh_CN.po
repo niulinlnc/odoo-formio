@@ -427,7 +427,7 @@ msgstr "可用"
 
 #. module: formio
 #: model:ir.model.fields,field_description:formio.field_formio_version_github_checker_wizard__available_version_github_tag_ids
-msgid "Available Version Github Tag"
+msgid "Available Version GitHub Tag"
 msgstr "可用版本Github标签"
 
 #. module: formio
