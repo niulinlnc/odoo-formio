@@ -21,7 +21,11 @@ class VersionGitHubChecker(models.TransientModel):
     @api.model
     def check_new_versions(self):
         res = []
-        response = requests.get('https://api.github.com/repos/formio/formio.js/tags')
+        headers = {}
+        token = self.env['ir.config_parameter'].sudo().get_param('formio.default_github_personal_access_token')
+        if token:
+            headers = {"Authorization": token}
+        response = requests.get('https://api.github.com/repos/formio/formio.js/tags', headers=headers)
 
         if response.status_code == 200:
             tags = response.json()

@@ -233,14 +233,15 @@ class Builder(models.Model):
                 schema['display'] = self.form_type
             else:
                 schema = {"display": self.form_type}
-            # schema.update({
-            #     "settings": {
-            #         "pdf": {
-            #             "id": "1ec0f8ee-6685-5d98-a847-26f67b67d6f0",
-            #             "src": "https://files.form.io/pdf/5692b91fd1028f01000407e3/file/1ec0f8ee-6685-5d98-a847-26f67b67d6f0"
-            #         }
-            #     },
-            # })
+            schema.update({
+                "settings": {
+                    "pdf": {
+                        "id": "1ec0f8ee-6685-5d98-a847-26f67b67d6f0",
+                        # "src": "https://files.form.io/pdf/5692b91fd1028f01000407e3/file/1ec0f8ee-6685-5d98-a847-26f67b67d6f0"
+                        "src": "http://form.183.245.115.102.nip.io:8069/og_apply/static/pdf"
+                    }
+                },
+            })
             self.schema = json.dumps(schema)
 
     @api.depends('formio_res_model_id')

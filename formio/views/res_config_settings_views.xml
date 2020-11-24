@@ -31,6 +31,10 @@ License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html) -->
                                 <div class="text-muted">
                                     A scheduled action (daily cron) is available and already active.<br/>
                                     Source: <a href="https://github.com/formio/formio.js/releases" target="_blank">https://github.com/formio/formio.js/releases</a>
+                                    <br/>
+                                    Github access token:<field name="formio_default_github_personal_access_token"/>
+                                    <br/>
+                                    <i class="fa fa-info-circle" title="info"/> Token is not required, but it can improve the success rate.<br/>
                                 </div>
                                 <div class="mt-4">
                                     <button name="action_formio_version_github_importer" type="object"
