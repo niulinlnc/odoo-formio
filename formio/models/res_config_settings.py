@@ -40,11 +40,6 @@ class ResConfigSettings(models.TransientModel):
             res.update(
                 formio_default_asset_css_ids=default_asset_css
             )
-        default_github_personal_access_token = Param.get_param('formio.github.personal.access.token')
-        if default_github_personal_access_token:
-            res.update(
-                formio_default_github_personal_access_token=default_github_personal_access_token
-            )
         github_personal_access_token = Param.get_param('formio.github.personal.access.token')
         if github_personal_access_token:
             res.update(
