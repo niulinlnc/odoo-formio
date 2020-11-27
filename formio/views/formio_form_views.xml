@@ -198,6 +198,7 @@ See LICENSE file for full licensing details. -->
                                     <field name="public_access" groups="formio.group_formio_admin"/>
                                 </group>
                                 <group string="Appearance" name="appearance_settings">
+                                    <field name="show_lang" groups="formio.group_formio_admin" attrs="{'invisible': [('builder_id', '=', False)]}"/>
                                     <field name="show_title" groups="formio.group_formio_admin" attrs="{'invisible': [('builder_id', '=', False)]}"/>
                                     <field name="show_state" groups="formio.group_formio_admin" attrs="{'invisible': [('builder_id', '=', False)]}"/>
                                     <field name="show_user_metadata" groups="formio.group_formio_admin" attrs="{'invisible': [('builder_id', '=', False)]}"/>

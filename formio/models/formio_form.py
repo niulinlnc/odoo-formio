@@ -98,6 +98,7 @@ class Form(models.Model):
     public_access_interval_type = fields.Selection(list(_interval_selection.items()), track_visibility='onchange')
     public_access = fields.Boolean("Public Access", compute='_compute_access', help="The Public Access check. Computed public access by checking whether (field) Public Access From has been expired.")
     public_create = fields.Boolean("Public Created", readonly=True, help="Form was public created")
+    show_lang = fields.Boolean("Show Lang")
     show_title = fields.Boolean("Show Title")
     show_state = fields.Boolean("Show State")
     show_id = fields.Boolean("Show ID")
@@ -130,6 +131,7 @@ class Form(models.Model):
     def _prepare_create_vals(self, vals):
         builder = self._get_builder_from_id(vals.get('builder_id'))
 
+        vals['show_lang'] = builder.show_form_lang
         vals['show_title'] = builder.show_form_title
         vals['show_state'] = builder.show_form_state
         vals['show_id'] = builder.show_form_id
@@ -353,6 +355,7 @@ class Form(models.Model):
         if not self.env.user.has_group('formio.group_formio_user_all_forms'):
             self.user_id = self.env.user.id
         self.title = self.builder_id.title
+        self.show_lang = self.builder_id.show_form_lang
         self.show_title = self.builder_id.show_form_title
         self.show_state = self.builder_id.show_form_state
         self.show_id = self.builder_id.show_form_id

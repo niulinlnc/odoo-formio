@@ -118,6 +118,7 @@ See LICENSE file for full licensing details. -->
                                     </div>
                                 </group>
                                 <group name="form_settings" string="Form Appearance">
+                                    <field name="show_form_lang" string="Show Lang" groups="formio.group_formio_admin"/>
                                     <field name="show_form_title" string="Show Title" groups="formio.group_formio_admin" attrs="{'readonly': [('state', '!=', 'DRAFT')]}"/>
                                     <field name="show_form_state" string="Show State" groups="formio.group_formio_admin" attrs="{'readonly': [('state', '!=', 'DRAFT')]}"/>
                                     <field name="show_form_user_metadata" groups="formio.group_formio_admin" attrs="{'readonly': [('state', '!=', 'DRAFT')]}"/>

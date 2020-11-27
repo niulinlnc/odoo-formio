@@ -101,6 +101,7 @@ class Builder(models.Model):
     public_access_interval_number = fields.Integer(default=30, track_visibility='onchange', help="Public access to submitted Form shall be rejected after expiration of the configured time interval.")
     public_access_interval_type = fields.Selection(list(_interval_selection.items()), default='minutes', track_visibility='onchange')
     view_as_html = fields.Boolean("View as HTML", track_visibility='onchange', help="View submission as a HTML view instead of disabled webform.")
+    show_form_lang = fields.Boolean("Show Form Lang", track_visibility='onchange', help="Show Form Lang in the Form header.", default=True)
     show_form_title = fields.Boolean("Show Form Title", track_visibility='onchange', help="Show Form Title in the Form header.", default=True)
     show_form_id = fields.Boolean("Show Form ID", track_visibility='onchange', help="Show Form ID in the Form header.", default=True)
     show_form_uuid = fields.Boolean("Show Form UUID", track_visibility='onchange', help="Show Form UUID in the Form.", default=True)
@@ -412,16 +413,16 @@ class Builder(models.Model):
         i18n = {}
         # Formio GUI/API translations
         for trans in self.formio_version_id.translations:
-            if trans.lang_id.iso_code not in i18n:
-                i18n[trans.lang_id.iso_code] = {trans.property: trans.value}
+            if trans.lang_id.iso_code.replace('_', '-') not in i18n:
+                i18n[trans.lang_id.iso_code.replace('_', '-')] = {trans.property: trans.value}
             else:
-                i18n[trans.lang_id.iso_code][trans.property] = trans.value
+                i18n[trans.lang_id.iso_code.replace('_', '-')][trans.property] = trans.value
         # Form Builder translations (labels etc).
         # These could override the former GUI/API translations, but
         # that's how the Javascript API works.
         for trans in self.translations:
-            if trans.lang_id.iso_code not in i18n:
-                i18n[trans.lang_id.iso_code] = {trans.source: trans.value}
+            if trans.lang_id.iso_code.replace('_', '-') not in i18n:
+                i18n[trans.lang_id.iso_code.replace('_', '-')] = {trans.source: trans.value}
             else:
-                i18n[trans.lang_id.iso_code][trans.source] = trans.value
+                i18n[trans.lang_id.iso_code.replace('_', '-')][trans.source] = trans.value
         return i18n
