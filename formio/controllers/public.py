@@ -29,6 +29,7 @@ class FormioPublicController(http.Controller):
 
         values = {
             'languages': form.builder_id.languages,
+            'show_languages': form.show_lang,
             'form': form,
             'formio_css_assets': form.builder_id.formio_css_assets,
             'formio_js_assets': form.builder_id.formio_js_assets,
@@ -105,6 +106,7 @@ class FormioPublicController(http.Controller):
 
         values = {
             'languages': formio_builder.languages,
+            'show_languages': formio_builder.show_form_lang,
             'builder': formio_builder,
             'public_form_create': True,
             'formio_builder_uuid': formio_builder.uuid,
@@ -165,7 +167,7 @@ class FormioPublicController(http.Controller):
 
         lang = request.env['res.lang']._lang_get(request.env.user.lang)
         if lang:
-            options['language'] = lang.iso_code
+            options['language'] = lang.iso_code.replace('_', '-')
             options['i18n'] = form.i18n_translations()
         return options
 
@@ -178,10 +180,11 @@ class FormioPublicController(http.Controller):
 
         lang = request.env['res.lang']._lang_get(request.env.user.lang)
         if lang:
-            options['language'] = lang.iso_code
+            options['language'] = lang.iso_code.replace('_', '-')
         else:
             context = request.env.context
-            options['language'] = context['lang'] if context.get('lang') else self.env.ref('base.lang_en')
+            lang = context['lang'] if context.get('lang') else self.env.ref('base.lang_en')
+            options['language'] = lang.replace('_', '-')
 
         return options
 

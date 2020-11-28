@@ -36,6 +36,7 @@ class FormioController(http.Controller):
         builder = request.env['formio.builder'].browse(builder_id)
         values = {
             'languages': builder.languages,
+            'show_languages': builder.show_form_lang,
             'builder': builder,
             'formio_css_assets': builder.formio_css_assets,
             'formio_js_assets': builder.formio_js_assets,
@@ -87,6 +88,7 @@ class FormioController(http.Controller):
 
         values = {
             'languages': form.builder_id.languages,
+            'show_languages': form.show_lang,
             'form': form,
             'formio_css_assets': form.builder_id.formio_css_assets,
             'formio_js_assets': form.builder_id.formio_js_assets,
@@ -267,8 +269,12 @@ class FormioController(http.Controller):
         options = form._get_js_options()
 
         # default language
-        if request.env.user.lang in form.languages.mapped('iso_code'):
-            language = request.env.user.lang
+        # FIX 'en_US' != 'en'
+        # request.env.user.lang = 'en_US' but form.languages.mapped('iso_code') == 'en'
+        api_langs = form.builder_id.formio_version_id.translations.mapped('lang_id').mapped('iso_code')
+        lang = request.env['res.lang']._lang_get(request.env.user.lang)
+        if lang.iso_code in api_langs:
+            language = lang.iso_code
         else:
             language = request._context['lang']
         options['language'] = language.replace('_', '-')
