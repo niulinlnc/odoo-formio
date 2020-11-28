@@ -164,7 +164,6 @@ class VersionGitHubTag(models.Model):
             # cleanup and update
             os.remove(tar_path)
             shutil.rmtree(extract_path)
-            os.rmdir(extract_path)
             self.write({'state': STATE_INSTALLED, 'formio_version_id': version.id})
 
     def action_reset_installed(self):
