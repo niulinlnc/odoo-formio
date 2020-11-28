@@ -163,7 +163,10 @@ class VersionGitHubTag(models.Model):
 
             # cleanup and update
             os.remove(tar_path)
-            shutil.rmtree(extract_path)
+            tmp_path = '/tmp/formio.js-%s' % self.version_name
+            if sys.platform == 'win32':
+                tmp_path = '%s\\formio.js-%s' % (static_path, self.version_name)
+            shutil.rmtree(tmp_path)
             self.write({'state': STATE_INSTALLED, 'formio_version_id': version.id})
 
     def action_reset_installed(self):
