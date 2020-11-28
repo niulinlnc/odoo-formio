@@ -271,9 +271,10 @@ class FormioController(http.Controller):
         # default language
         # FIX 'en_US' != 'en'
         # request.env.user.lang = 'en_US' but form.languages.mapped('iso_code') == 'en'
+        api_langs = form.builder_id.formio_version_id.translations.mapped('lang_id').mapped('iso_code')
         lang = request.env['res.lang']._lang_get(request.env.user.lang)
-        if lang.iso_code in form.languages.mapped('iso_code'):
-            language = request.env.user.lang
+        if lang.iso_code in api_langs:
+            language = lang.iso_code
         else:
             language = request._context['lang']
         options['language'] = language.replace('_', '-')
