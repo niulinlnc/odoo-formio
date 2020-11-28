@@ -171,8 +171,9 @@ class VersionGitHubTag(models.Model):
 
     def action_reset_installed(self):
         if self.formio_version_id:
-            vals = {'formio_version_id': False, 'state': STATE_REGISTERD}
+            vals = {'formio_version_id': False, 'state': STATE_AVAILABLE}
             self.write(vals)
+            self.action_download_install()
 
     def _tar_extract_members(self, members):
         full_todo = ['formio.full.min.js', 'formio.full.min.css']
