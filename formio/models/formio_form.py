@@ -46,7 +46,7 @@ class Form(models.Model):
     state = fields.Selection(
         [(STATE_PENDING, 'Pending'), (STATE_DRAFT, 'Draft'),
          (STATE_COMPLETE, 'Completed'), (STATE_CANCEL, 'Canceled')],
-        string="State", default=STATE_PENDING, track_visibility='onchange', index=True)
+        string="State", default=STATE_PENDING, tracking=True, index=True)
     display_state = fields.Char("Display State", compute='_compute_display_fields', store=False)
     kanban_group_state = fields.Selection(
         [('A', 'Pending'), ('B', 'Draft'), ('C', 'Completed'), ('D', 'Canceled')],
@@ -70,7 +70,7 @@ class Form(models.Model):
     res_partner_id = fields.Many2one('res.partner', readonly=True, string='Resource Partner')
     user_id = fields.Many2one(
         'res.users', string='Assigned user',
-        index=True, track_visibility='onchange')
+        index=True, tracking=True)
     assigned_partner_id = fields.Many2one('res.partner', related='user_id.partner_id', string='Assigned Partner')
     assigned_partner_name = fields.Char(related='assigned_partner_id.name', string='Assigned Partner Name')
     invitation_mail_template_id = fields.Many2one(
@@ -84,18 +84,18 @@ class Form(models.Model):
     submission_partner_id = fields.Many2one('res.partner', related='submission_user_id.partner_id', string='Submission Partner')
     submission_partner_name = fields.Char(related='submission_partner_id.name', string='Submission Partner Name')
     submission_date = fields.Datetime(
-        string='Submission Date', readonly=True, track_visibility='onchange',
+        string='Submission Date', readonly=True, tracking=True,
         help='Datetime when the form was last submitted.')
     sequence = fields.Integer(help="Usefull when storing and listing forms in an ordered way")
     portal = fields.Boolean("Portal (Builder)", related='builder_id.portal', readonly=True, help="Form is accessible by assigned portal user")
     portal_share = fields.Boolean("Portal")
     portal_submit_done_url = fields.Char(related='builder_id.portal_submit_done_url')
     public = fields.Boolean("Public (Builder)", related='builder_id.public', readonly=True)
-    public_share = fields.Boolean("Public", track_visibility='onchange', help="Share form in public? (with access expiration check).")
+    public_share = fields.Boolean("Public", tracking=True, help="Share form in public? (with access expiration check).")
     public_access_date_from = fields.Datetime(
-        string='Public Access From', track_visibility='onchange', help='Datetime from when the form is public shared until it expires.')
-    public_access_interval_number = fields.Integer(track_visibility='onchange')
-    public_access_interval_type = fields.Selection(list(_interval_selection.items()), track_visibility='onchange')
+        string='Public Access From', tracking=True, help='Datetime from when the form is public shared until it expires.')
+    public_access_interval_number = fields.Integer(tracking=True)
+    public_access_interval_type = fields.Selection(list(_interval_selection.items()), tracking=True)
     public_access = fields.Boolean("Public Access", compute='_compute_access', help="The Public Access check. Computed public access by checking whether (field) Public Access From has been expired.")
     public_create = fields.Boolean("Public Created", readonly=True, help="Form was public created")
     show_lang = fields.Boolean("Show Lang")
