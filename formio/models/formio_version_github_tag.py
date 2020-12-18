@@ -81,7 +81,6 @@ class VersionGitHubTag(models.Model):
         static_path = modules.get_module_resource('formio', 'static/installed')
         if sys.platform == 'win32':
             tar_path = '%s\\%s.tar.gz' % (static_path, self.version_name)
-
         if response.status_code == 200:
             with open(tar_path, 'wb') as f:
                 f.write(response.raw.read())
