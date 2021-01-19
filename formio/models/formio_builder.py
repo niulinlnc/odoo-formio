@@ -24,7 +24,7 @@ STATES = [
 
 class Builder(models.Model):
     _name = 'formio.builder'
-    _description = 'Formio Builder'
+    _description = 'Form Builder'
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     _rec_name = 'display_name_full'
@@ -46,7 +46,7 @@ class Builder(models.Model):
         'formio.version', string='Form.io Version', required=True,
         default=lambda self: self._default_formio_version_id(), tracking=True,
         help="""Loads the specific Form.io Javascript API/libraries version (sourcecode: \https://github.com/formio/formio.js)""")
-    formio_version_name = fields.Char(related='formio_version_id.name', string='Form.io version')
+    formio_version_name = fields.Char(related='formio_version_id.name', string='Form.io version', tracking=False) # silly, but avoids duplicate tracking message
     formio_css_assets = fields.One2many(related='formio_version_id.css_assets', string='Form.io CSS')
     formio_js_assets = fields.One2many(related='formio_version_id.js_assets', string='Form.io Javascript')
     formio_js_options_id = fields.Many2one('formio.builder.js.options', string='Form.io Javascript Options template', store=False)
@@ -120,6 +120,7 @@ class Builder(models.Model):
     component_partner_email = fields.Char(string='Component Partner Email', tracking=True)
     component_partner_add_follower = fields.Boolean(
         string='Component Partner Add to Followers', tracking=True, help='Add determined partner to followers of the Form.')
+    component_partner_activity_user_id = fields.Many2one('res.users', tracking=True)
 
     def _states_selection(self):
         return STATES
@@ -248,7 +249,7 @@ class Builder(models.Model):
     @api.depends('public')
     def _compute_public_url(self):
         for r in self:
-            if r.public:
+            if r.public and request:
                 url_root = request.httprequest.url_root
                 self.public_url = '%s%s/%s' % (url_root, 'formio/public/form/create', r.uuid)
             else:

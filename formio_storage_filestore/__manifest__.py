@@ -2,20 +2,18 @@
 # See LICENSE file for full licensing details.
 
 {
-    'name': 'Forms | reCAPTCHA Component',
-    'summary': 'Drag & drop a reCAPTCHA component with (server)verification on a Form.',
-    'version': '1.0',
+    'name': 'Forms | Storage Filestore',
+    'summary': 'Store uploads/files by URL in Odoo filestore (attachments)',
+    'version': '0.3',
     'license': 'LGPL-3',
     'author': 'Nova Code',
     'website': 'https://www.novacode.nl',
     'live_test_url': 'https://demo13.novacode.nl',
     'category': 'Extra Tools',
-    'depends': ['formio'],
+    'depends': ['formio', 'formio_data_api'],
     'data': [
-        'views/formio_builder_views.xml',
-        'views/formio_builder_templates.xml',
-        'views/formio_form_templates.xml',
-        'views/formio_form_public_templates.xml',
+        'data/formio_storage_filestore_data.xml',
+        'data/ir_cron_data.xml'
     ],
     'installable': True,
     'application': True,
@@ -23,8 +21,8 @@
         'static/description/banner.gif',
     ],
     'description': """
-Forms | reCAPTCHA Component
-===========================
+Forms | Storage Filestore Provider
+==================================
 
 """
 }
