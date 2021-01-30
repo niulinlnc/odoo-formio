@@ -108,11 +108,12 @@ class FormioCustomerPortal(CustomerPortal):
         if not builder:
             redirect_url = self._redirect_url()
             # TODO website page with message?
-            return request.redirect(redirect_utl)
+            return request.redirect(redirect_url)
         vals = {
             'builder_id': builder.id,
             'title': builder.title,
-            'user_id': request.env.user.id
+            'user_id': request.env.user.id,
+            'partner_id': request.env.user.partner_id.id
         }
         form = request.env['formio.form'].create(vals)
         url = '/my/formio/form/{uuid}'.format(uuid=form.uuid)
