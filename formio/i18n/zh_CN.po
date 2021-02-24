@@ -859,7 +859,7 @@ msgstr "构建器"
 
 #. module: formio
 #: model:ir.model.fields,field_description:formio.field_formio_form__builder_id
-msgid "Form builder"
+msgid "Form Builder"
 msgstr "构建器"
 
 #. module: formio
@@ -2265,5 +2265,5 @@ msgstr ""
 #. module: formio
 #: code:addons/formio/models/formio_builder.py:0
 #, python-format
-msgid "{title} (state: {state} - version: {version})"
-msgstr "{title} (状态: {state} - 版本号: {version})"
+msgid "{title} (state: {state}, version: {version})"
+msgstr "{title} (状态: {state}, 版本号: {version})"

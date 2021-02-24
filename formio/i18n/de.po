@@ -466,7 +466,7 @@ msgstr "Vorlagen"
 
 #. module: formio
 #: model:ir.model.fields,field_description:formio.field_formio_form_builder_id
-msgid "Form builder"
+msgid "Form Builder"
 msgstr "Vorlage"
 
 #. module: formio
@@ -1169,5 +1169,5 @@ msgstr "js"
 #: code:addons/formio/formio/models/formio_builder.py:160
 #: code:addons/formio/models/formio_builder.py:160
 #, python-format
-msgid "{title} (state: {state} - version: {version})"
-msgstr "{title} (Status: {state} - Version: {version})"
+msgid "{title} (state: {state}, version: {version})"
+msgstr "{title} (Status: {state}, Version: {version})"

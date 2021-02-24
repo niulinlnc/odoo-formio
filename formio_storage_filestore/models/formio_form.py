@@ -10,15 +10,29 @@ class Form(models.Model):
     @api.model
     def create(self, vals):
         res = super(Form, self).create(vals)
-
-        res._process_storage_filestore_ir_attachments('create')
+        if vals.get('submission_data'):
+            res._process_storage_filestore_ir_attachments('create')
         return res
 
     def write(self, vals):
         submission_data = self.submission_data
         res = super(Form, self).write(vals)
-        self._process_storage_filestore_ir_attachments('write')
+        if vals.get('submission_data'):
+            self._process_storage_filestore_ir_attachments('write')
         return res
+
+    def unlink(self):
+        """
+        Workaround the ir.attachment its unlink implementation of this module.
+        Which blocks deletion of attachment still linked to a user upload
+        """
+        domain = [
+            ('res_model', '=', 'formio.form'),
+            ('res_id', 'in', self.ids)
+        ]
+        attachments = self.env['ir.attachment'].search(domain)
+        attachments.write({'formio_storage_filestore_user_id': False})
+        return super(Form, self).unlink()
 
     def _process_storage_filestore_ir_attachments(self, mode):
         attach_names = []
@@ -30,7 +44,10 @@ class Form(models.Model):
 
         # update ir.attachment (link with formio.form)
         if attach_names:
-            domain = [('name', 'in', attach_names)]
+            domain = [
+                ('name', 'in', attach_names),
+                ('formio_storage_filestore_user_id', '!=', False)
+            ]
             attachments = self.env['ir.attachment'].search(domain)
             for attach in attachments:
                 vals = {
@@ -43,7 +60,8 @@ class Form(models.Model):
         if mode == 'write':
             domain = [
                 ('res_model', '=', 'formio.form'),
-                ('res_id', '=', self.id)
+                ('res_id', '=', self.id),
+                ('formio_storage_filestore_user_id', '!=', False)
             ]
             if attach_names:
                 domain.append(('name', 'not in', attach_names))
